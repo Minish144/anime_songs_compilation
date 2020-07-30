@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <video :src="source" id="video" ref="video" autoplay="autoplay"></video>
+    <div class='video-wrapper'>
+        <video :src="source" class="videoInsert" ref="video" width="1280" height="720" autoplay="autoplay"></video>
     </div>
 </template>
 
@@ -24,7 +24,5 @@ export default {
 </script>
 
 <style scoped>
-video {
-    height: 70% !important;
-}
+
 </style>

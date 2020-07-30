@@ -42,7 +42,6 @@ export default {
         })
     },
       videoUpdate(link) {
-        // document.getElementById("video").src = link;
         this.videoLink = link;
         document.getElementById("video").load();
         
