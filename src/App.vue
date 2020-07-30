@@ -2,7 +2,9 @@
   <div id="app">
     <Main />
     <Viewer 
-    v-model="videoLink"
+      v-model="videoLink" />
+      <VideoNavigationBar 
+      v-on:onClick="getWebmUrl"
     />
   </div>
 </template>
@@ -10,21 +12,31 @@
 <script>
 import Main from '@/components/Menu'
 import Viewer from '@/components/Viewer'
+import VideoNavigationBar from '@/components/VideoNavigationBar'
 
 export default {
   name: 'App',
   components: {
-    Main, Viewer
+    Main, Viewer, VideoNavigationBar
   },
   data() {
     return {
-      videoLink: ""
+      videoLink: "",
     }
   },
-  mounted() {
-    fetch('http://91.203.192.143:5000/api/songs?random=true&count=1')
-      .then(response => response.json())
-      .then(json => this.videoLink = json['items'][0]['Video_URL'])
+  methods: {
+    getWebmUrl() {
+      fetch('http://91.203.192.143:5000/api/songs?random=true&count=1')
+        .then(response => response.json())
+        .then(json => { 
+          var link = json['items'][0]['Video_URL']; 
+          this.videoUpdate(link);
+        })
+    },
+      videoUpdate(link) {
+        document.getElementById("video").src = link;
+        document.getElementById("video").load();
+      }
   }
 }
 
