@@ -1,7 +1,9 @@
 <template>
   <div id="app">
-    <Main/>
-    <Viewer/>
+    <Main />
+    <Viewer 
+    v-model="videoLink"
+    />
   </div>
 </template>
 
@@ -13,8 +15,19 @@ export default {
   name: 'App',
   components: {
     Main, Viewer
+  },
+  data() {
+    return {
+      videoLink: ""
+    }
+  },
+  mounted() {
+    fetch('http://91.203.192.143:5000/api/songs?random=true&count=1')
+      .then(response => response.json())
+      .then(json => this.videoLink = json['items'][0]['Video_URL'])
   }
 }
+
 </script>
 
 <style>
