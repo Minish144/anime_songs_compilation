@@ -2,7 +2,8 @@
   <div id="app">
     <Main />
     <Viewer 
-      v-model="videoLink" />
+      v-bind:source="videoLink" 
+    />
       <VideoNavigationBar 
       v-on:onClick="getWebmUrl"
     />
@@ -17,13 +18,18 @@ import VideoNavigationBar from '@/components/VideoNavigationBar'
 export default {
   name: 'App',
   components: {
-    Main, Viewer, VideoNavigationBar
+    Main, 
+    Viewer, 
+    VideoNavigationBar
   },
   data() {
     return {
       videoLink: "",
       videoData: {}
     }
+  },
+  mounted() {
+    this.getWebmUrl();
   },
   methods: {
     getWebmUrl() {
@@ -36,10 +42,11 @@ export default {
         })
     },
       videoUpdate(link) {
-        document.getElementById("video").src = link;
+        // document.getElementById("video").src = link;
+        this.videoLink = link;
         document.getElementById("video").load();
         
-        console.log(this.$refs.video.src)
+        console.log(this.videoLink)
       }
   }
 }

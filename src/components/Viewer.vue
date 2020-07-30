@@ -1,11 +1,12 @@
 <template>
     <div>
-        <video :src="videoLink" id="video" ref="video" autoplay="autoplay"></video>
+        <video :src="source" id="video" ref="video" autoplay="autoplay"></video>
     </div>
 </template>
 
 <script>
 export default {
+    props: ['source'],
     data() {
         return {
             videoLink: "",
@@ -24,7 +25,6 @@ export default {
 
 <style scoped>
 video {
-    width: 50%;
-    height: auto;
+    height: 70% !important;
 }
 </style>
