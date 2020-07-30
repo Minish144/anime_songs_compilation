@@ -22,6 +22,7 @@ export default {
   data() {
     return {
       videoLink: "",
+      videoData: {}
     }
   },
   methods: {
@@ -29,13 +30,16 @@ export default {
       fetch('http://91.203.192.143:5000/api/songs?random=true&count=1')
         .then(response => response.json())
         .then(json => { 
-          var link = json['items'][0]['Video_URL']; 
+          this.videoData = json['items'][0]; 
+          const link = this.videoData['Video_URL']
           this.videoUpdate(link);
         })
     },
       videoUpdate(link) {
         document.getElementById("video").src = link;
         document.getElementById("video").load();
+        
+        console.log(this.$refs.video.src)
       }
   }
 }
