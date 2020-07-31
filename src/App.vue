@@ -8,6 +8,8 @@
       <VideoNavigationBar 
       v-on:onclickRandom="updWebmUrl"
       v-on:onlickPlayPause="playPauseVid"
+      v-on:onlickMoveBack="rewindVid(-10)"
+      v-on:onlickMoveFrw="rewindVid(10)"
     />
   </div>
 </template>
@@ -53,13 +55,23 @@ export default {
         var video = document.getElementById("video")
 
         if (video.paused) {
-          console.log('started');
           video.play();
         } else {
-          console.log('paused');
           video.pause();
         }
-        console.log( document.getElementById("video").src )
+        console.log(video.currentTime)
+      },
+      rewindVid(seconds) {
+        var video = document.getElementById("video")
+        const curTime = video.currentTime
+
+        if (seconds > 0) {
+          video.currentTime = curTime + 10;
+        } else if (seconds < 0 && curTime > 10) {
+          video.currentTime = curTime - 10;
+        } else if (seconds <0 && curTime < 10) {
+          video.currentTime = 0;
+        }
       }
   }
 }
