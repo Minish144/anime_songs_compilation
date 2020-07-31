@@ -6,7 +6,7 @@
       v-on:videoEnded="updWebmUrl"
     />
       <VideoNavigationBar 
-      v-on:onClick="updWebmUrl"
+      v-on:onlickRandom="updWebmUrl"
     />
   </div>
 </template>
