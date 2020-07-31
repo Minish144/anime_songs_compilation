@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button v-on:click="$emit('onClick', true)">Randomize</button>
+        <button @click="$emit('onClick', true)">Randomize</button>
     </div>
 </template>
 

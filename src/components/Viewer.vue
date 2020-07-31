@@ -1,6 +1,6 @@
 <template>
     <div class='video-wrapper'>
-        <video :src="source" class="videoInsert" ref="video" width="1280" height="720" autoplay="autoplay"></video>
+        <video :src="source" id="video" ref="video" width="1280" height="720" autoplay="autoplay" @ended="$emit('videoEnded')"></video>
     </div>
 </template>
 

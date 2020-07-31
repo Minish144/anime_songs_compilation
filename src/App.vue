@@ -2,10 +2,11 @@
   <div id="app">
     <Main />
     <Viewer 
-      v-bind:source="videoLink" 
+      v-bind:source="videoLink"
+      v-on:videoEnded="updWebmUrl"
     />
       <VideoNavigationBar 
-      v-on:onClick="getWebmUrl"
+      v-on:onClick="updWebmUrl"
     />
   </div>
 </template>
@@ -29,19 +30,19 @@ export default {
     }
   },
   mounted() {
-    this.getWebmUrl();
+    this.updWebmUrl();
   },
   methods: {
-    getWebmUrl() {
+    updWebmUrl() {
       fetch('http://91.203.192.143:5000/api/songs?random=true&count=1')
         .then(response => response.json())
         .then(json => { 
           this.videoData = json['items'][0]; 
           const link = this.videoData['Video_URL']
-          this.videoUpdate(link);
+          this.setVideoSrc(link);
         })
     },
-      videoUpdate(link) {
+      setVideoSrc(link) {
         this.videoLink = link;
         document.getElementById("video").load();
         
