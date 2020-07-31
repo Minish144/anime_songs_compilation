@@ -63,6 +63,7 @@ export default {
       },
       rewindVid(seconds) {
         var video = document.getElementById("video")
+        
         const curTime = video.currentTime
 
         if (seconds > 0) {
