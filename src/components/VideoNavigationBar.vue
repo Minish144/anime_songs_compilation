@@ -1,6 +1,6 @@
 <template>
     <div>
-        <button @click="$emit('onlickRandom')">Randomize</button>
+        <button @click="$emit('onclickRandom')">Randomize</button>
         <button @click="$emit('onlickPlayPause')">Pause</button>
         <button @click="$emit('onlickMoveBack')">←</button>
         <button @click="$emit('onlickMoveFrw')">→</button>
@@ -9,7 +9,12 @@
 
 <script>
 export default {
-    props: ['playPause']
+    props: ['playPause'],
+    data() {
+        return {
+            paused: true
+        }
+    }
 }
 </script>
 

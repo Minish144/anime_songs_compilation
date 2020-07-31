@@ -6,7 +6,8 @@
       v-on:videoEnded="updWebmUrl"
     />
       <VideoNavigationBar 
-      v-on:onlickRandom="updWebmUrl"
+      v-on:onclickRandom="updWebmUrl"
+      v-on:onlickPlayPause="playPauseVid"
     />
   </div>
 </template>
@@ -47,6 +48,18 @@ export default {
         document.getElementById("video").load();
         
         console.log(this.videoLink)
+      },
+      playPauseVid() {
+        var video = document.getElementById("video")
+
+        if (video.paused) {
+          console.log('started');
+          video.play();
+        } else {
+          console.log('paused');
+          video.pause();
+        }
+        console.log( document.getElementById("video").src )
       }
   }
 }
