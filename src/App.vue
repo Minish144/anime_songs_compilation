@@ -1,20 +1,56 @@
 <template>
   <div id="app">
-    <Main/>
-    <Viewer/>
+    <Main />
+    <Viewer 
+      v-bind:source="videoLink"
+      v-on:videoEnded="updWebmUrl"
+    />
+      <VideoNavigationBar 
+      v-on:onlickRandom="updWebmUrl"
+    />
   </div>
 </template>
 
 <script>
 import Main from '@/components/Menu'
 import Viewer from '@/components/Viewer'
+import VideoNavigationBar from '@/components/VideoNavigationBar'
 
 export default {
   name: 'App',
   components: {
-    Main, Viewer
+    Main, 
+    Viewer, 
+    VideoNavigationBar
+  },
+  data() {
+    return {
+      videoLink: "",
+      videoData: {}
+    }
+  },
+  mounted() {
+    this.updWebmUrl();
+  },
+  methods: {
+    updWebmUrl() {
+      fetch('http://91.203.192.143:5000/api/songs?random=true&count=1')
+        .then(response => response.json())
+        .then(json => { 
+          this.videoData = json['items'][0]; 
+          const link = this.videoData['Video_URL']
+          this.setVideoSrc(link);
+        })
+    },
+      setVideoSrc(link) {
+        this.videoLink = link;
+        document.getElementById("video").load();
+        
+        console.log(this.videoLink)
+      }
   }
 }
+
 </script>
 
 <style>
