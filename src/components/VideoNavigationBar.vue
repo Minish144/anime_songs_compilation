@@ -1,9 +1,9 @@
 <template>
     <div>
-        <button @click="$emit('onclickRandom')">Randomize</button>
-        <button @click="$emit('onlickPlayPause')">Pause</button>
-        <button @click="$emit('onlickMoveBack')">←</button>
-        <button @click="$emit('onlickMoveFrw')">→</button>
+        <button @click="$emit('onclickRandom')">Randomize</button> &emsp;
+        <button @click="$emit('onlickPlayPause')">Pause</button> &emsp;
+        <button @click="$emit('onlickMoveBack')">←</button> &emsp;
+        <button @click="$emit('onlickMoveFrw')">→</button> &emsp;
     </div>
 </template>
 

@@ -11,6 +11,9 @@
       v-on:onlickMoveBack="rewindVid(-10)"
       v-on:onlickMoveFrw="rewindVid(10)"
     />
+    <SongDataViewer 
+      v-bind:data="videoData"
+    />
   </div>
 </template>
 
@@ -18,13 +21,15 @@
 import Main from '@/components/Menu'
 import Viewer from '@/components/Viewer'
 import VideoNavigationBar from '@/components/VideoNavigationBar'
+import SongDataViewer from '@/components/SongDataViewer'
 
 export default {
   name: 'App',
   components: {
     Main, 
     Viewer, 
-    VideoNavigationBar
+    VideoNavigationBar,
+    SongDataViewer
   },
   data() {
     return {
@@ -63,7 +68,7 @@ export default {
       },
       rewindVid(seconds) {
         var video = document.getElementById("video")
-        
+
         const curTime = video.currentTime
 
         if (seconds > 0) {

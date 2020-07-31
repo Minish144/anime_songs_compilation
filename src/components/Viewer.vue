@@ -24,5 +24,7 @@ export default {
 </script>
 
 <style scoped>
-
+    video {
+        max-width: 100%;
+    }
 </style>
