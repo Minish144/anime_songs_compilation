@@ -1,10 +1,8 @@
 <template>
     <div class="text-wrapper">
-        From: {{data['Anime_Title']}} <br>
-        Song: {{data['Song_Title']}} <br>
-        Type: {{data['Song_Type']}} <br>
-        <br>
-        <a :href="data['Video_URL']">Video link</a> <br>
+        From: "{{data['Anime_Title']}}" <br><br>
+        Song: <a :href="data['Video_URL']">"{{data['Song_Title']}}"</a> <br><br>
+        Type: {{data['Song_Type']}}
     </div>
 </template>
 
@@ -16,20 +14,17 @@
 
 <style scoped>
     .text-wrapper {
-        position: relative;
+        text-align: left;
         width: 300px;
         height: 100px;
-        margin-left: auto;
-        margin-right: auto;
-        padding: 50px;
-        margin-top: 10px;
         background-color: bisque;
         border-radius: 1em;
         max-width: 50%;
+        display: inline-block;
+        padding: 50px;
     }
     a {
         text-decoration: none;
         color:cadetblue;
-        text-align: left;
     }
 </style>

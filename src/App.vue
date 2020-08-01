@@ -14,6 +14,12 @@
     <SongDataViewer 
       v-bind:data="videoData"
     />
+    <p>
+      History
+    </p>
+    <History 
+      v-bind:vData="history"
+    />
   </div>
 </template>
 
@@ -22,6 +28,7 @@ import Main from '@/components/Menu'
 import Viewer from '@/components/Viewer'
 import VideoNavigationBar from '@/components/VideoNavigationBar'
 import SongDataViewer from '@/components/SongDataViewer'
+import History from '@/components/History'
 
 export default {
   name: 'App',
@@ -29,24 +36,29 @@ export default {
     Main, 
     Viewer, 
     VideoNavigationBar,
-    SongDataViewer
+    SongDataViewer,
+    History
   },
   data() {
     return {
       videoLink: "",
-      videoData: {}
+      videoData: {},
+      history: []
     }
   },
   mounted() {
     this.updWebmUrl();
+    document.getElementById("video").load();
   },
   methods: {
     updWebmUrl() {
       fetch('http://91.203.192.143:5000/api/songs?random=true&count=1')
         .then(response => response.json())
-        .then(json => { 
+        .then(json => {
+          this.history.unshift(this.videoData);
+
           this.videoData = json['items'][0]; 
-          const link = this.videoData['Video_URL']
+          const link = this.videoData['Video_URL'];
           this.setVideoSrc(link);
         })
     },
@@ -55,6 +67,7 @@ export default {
         document.getElementById("video").load();
         
         console.log(this.videoLink)
+        console.log(this.history)
       },
       playPauseVid() {
         var video = document.getElementById("video")
@@ -68,9 +81,7 @@ export default {
       },
       rewindVid(seconds) {
         var video = document.getElementById("video")
-
         const curTime = video.currentTime
-
         if (seconds > 0) {
           video.currentTime = curTime + 10;
         } else if (seconds < 0 && curTime > 10) {
