@@ -1,8 +1,7 @@
 <template>
     <ul>
-        <li v-for="item in videosData" :key = "item">
+        <li v-for="item in handleArray(videosData)" :key = "item">
             <SongDataViewer
-                v-if="item != {}"
                 v-bind:data="item"
             />
         </li>
@@ -19,6 +18,17 @@ export default {
     data() {
         return {
             videosData: this.vData
+        }
+    }, 
+    methods: {
+
+        handleArray(arr) {
+            if (arr.length < 4){
+                return arr.slice(0, arr.length-1);
+            }
+            else {
+                return arr.slice(0, 4);
+            }
         }
     }
 }

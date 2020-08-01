@@ -56,7 +56,7 @@ export default {
         .then(response => response.json())
         .then(json => {
           this.history.unshift(this.videoData);
-
+          
           this.videoData = json['items'][0]; 
           const link = this.videoData['Video_URL'];
           this.setVideoSrc(link);
@@ -65,19 +65,15 @@ export default {
       setVideoSrc(link) {
         this.videoLink = link;
         document.getElementById("video").load();
-        
-        console.log(this.videoLink)
-        console.log(this.history)
       },
       playPauseVid() {
         var video = document.getElementById("video")
-
         if (video.paused) {
           video.play();
         } else {
           video.pause();
         }
-        console.log(video.currentTime)
+
       },
       rewindVid(seconds) {
         var video = document.getElementById("video")
