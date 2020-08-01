@@ -5,11 +5,12 @@
       v-bind:source="videoLink"
       v-on:videoEnded="updWebmUrl"
     />
-      <VideoNavigationBar 
+    <VideoNavigationBar 
       v-on:onclickRandom="updWebmUrl"
-      v-on:onlickPlayPause="playPauseVid"
-      v-on:onlickMoveBack="rewindVid(-10)"
-      v-on:onlickMoveFrw="rewindVid(10)"
+      v-on:onclickPlayPause="playPauseVid"
+      v-on:onclickMoveBack="rewindVid(-10)"
+      v-on:onclickMoveFrw="rewindVid(10)"
+      v-on:onclickFS="vidFullscreen"
     />
     <SongDataViewer 
       v-bind:data="videoData"
@@ -84,6 +85,19 @@ export default {
           video.currentTime = curTime - 10;
         } else if (seconds <0 && curTime < 10) {
           video.currentTime = 0;
+        }
+      },
+      vidFullscreen() {
+        var video = document.getElementById("video")
+
+        if (video.requestFullscreen) {
+        video.requestFullscreen();
+        } else if (video.mozRequestFullScreen) { /* Firefox */
+        video.mozRequestFullScreen();
+        } else if (video.webkitRequestFullscreen) { /* Chrome, Safari and Opera */
+        video.webkitRequestFullscreen();
+        } else if (video.msRequestFullscreen) { /* IE/Edge */
+        video.msRequestFullscreen();
         }
       }
   }
