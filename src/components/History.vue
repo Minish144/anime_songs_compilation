@@ -21,7 +21,6 @@ export default {
         }
     }, 
     methods: {
-
         handleArray(arr) {
             if (arr.length < 4){
                 return arr.slice(0, arr.length-1);
