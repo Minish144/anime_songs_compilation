@@ -74,7 +74,7 @@ export default {
         } else {
           video.pause();
         }
-
+        this.changePlayButtonLeg();
       },
       rewindVid(seconds) {
         var video = document.getElementById("video")
@@ -98,6 +98,16 @@ export default {
         video.webkitRequestFullscreen();
         } else if (video.msRequestFullscreen) { /* IE/Edge */
         video.msRequestFullscreen();
+        }
+      },
+      changePlayButtonLeg() {
+        const pbutton = document.getElementById("playPause");
+        const val = pbutton.innerText;
+        console.log(val);
+        if (val == 'Pause') {
+          pbutton.innerText = "Play";
+        } else {
+          pbutton.innerText = "Pause";
         }
       }
   }
