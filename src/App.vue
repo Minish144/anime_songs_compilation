@@ -102,9 +102,10 @@ export default {
       },
       changePlayButtonLeg() {
         const pbutton = document.getElementById("playPause");
-        const val = pbutton.innerText;
-        console.log(val);
-        if (val == 'Pause') {
+        const vid = document.getElementById("video");
+        var isPaused = vid.paused;
+        console.log(isPaused);
+        if (isPaused) {
           pbutton.innerText = "Play";
         } else {
           pbutton.innerText = "Pause";
