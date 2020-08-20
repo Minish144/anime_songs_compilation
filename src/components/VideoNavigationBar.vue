@@ -4,6 +4,8 @@
         <button @click="$emit('onclickPlayPause')" id="playPause">Pause</button> &emsp;
         <button @click="$emit('onclickMoveBack')">←</button> &emsp;
         <button @click="$emit('onclickMoveFrw')">→</button> &emsp;
+        <button @click="$emit('onclickVolDn')"> – </button> &emsp;
+        <button @click="$emit('onclickVolUp')"> + </button> &emsp;
         <button @click="$emit('onclickFS')">Fullscreen</button> &emsp;
     </div>
 </template>
