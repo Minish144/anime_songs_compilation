@@ -10,6 +10,8 @@
       v-on:onclickPlayPause="playPauseVid"
       v-on:onclickMoveBack="rewindVid(-10)"
       v-on:onclickMoveFrw="rewindVid(10)"
+      v-on:onclickVolUp="vidVolChange(10)"
+      v-on:onclickVolDn="vidVolChange(-10)"
       v-on:onclickFS="vidFullscreen"
     />
     <SongDataViewer 
@@ -57,7 +59,7 @@ export default {
         .then(response => response.json())
         .then(json => {
           this.history.unshift(this.videoData);
-          
+
           this.videoData = json['items'][0]; 
           const link = this.videoData['Video_URL'];
           this.setVideoSrc(link);
@@ -85,6 +87,20 @@ export default {
           video.currentTime = curTime - 10;
         } else if (seconds <0 && curTime < 10) {
           video.currentTime = 0;
+        }
+      },
+      vidVolChange(perc) {
+        var video = document.getElementById("video");
+
+        const volume = video.volume;
+        if ((perc > 0 && volume <= 0.9) || (perc < 0 && volume >= 0.1)) {
+          video.volume = volume + 0.01 * perc;
+        }
+        else if (perc > 0 && volume > 0.9) {
+          video.volume = 1
+        }
+        else if (perc < 0 && volume < 0.1) {
+          video.volume = 0
         }
       },
       vidFullscreen() {
