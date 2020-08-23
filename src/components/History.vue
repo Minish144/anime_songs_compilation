@@ -22,11 +22,11 @@ export default {
     }, 
     methods: {
         handleArray(arr) {
-            if (arr.length < 4){
+            if (arr.length < 3){
                 return arr.slice(0, arr.length-1);
             }
             else {
-                return arr.slice(0, 4);
+                return arr.slice(0, 3);
             }
         }
     }
@@ -36,7 +36,8 @@ export default {
 <style scoped>
     li {
         list-style-type: none;
-        margin: 10px;
-        margin-left: -30px !important;
+        margin-top: 30px;
+        margin-bottom: 30px;
+        margin-left: -30px;
     }
 </style>

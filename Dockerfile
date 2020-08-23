@@ -1,11 +1,13 @@
-FROM trion/ng-cli:8.3.8 as build
-
-COPY . /app
-
+# этап сборки (build stage)
+FROM node:lts-alpine as build-stage
+WORKDIR /app
+COPY package*.json ./
 RUN npm install
-RUN ng build --prod
+COPY . .
+RUN npm run build
 
-FROM nginx:1.17.4
-
-COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=build /app/dist/retail-analytics /usr/share/nginx/html
+# этап production (production-stage)
+FROM nginx:stable-alpine as production-stage
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+EXPOSE 80
+CMD ["nginx", "-g", "daemon off;"]
