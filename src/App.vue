@@ -12,6 +12,8 @@
           v-on:onclickPlayPause="playPauseVid"
           v-on:onclickMoveBack="rewindVid(-10)"
           v-on:onclickMoveFrw="rewindVid(10)"
+          v-on:onclickVolUp="vidVolChange(10)"
+          v-on:onclickVolDn="vidVolChange(-10)"
           v-on:onclickFS="vidFullscreen"
         />
         <SongDataViewer 
@@ -155,7 +157,7 @@ export default {
   }
   .player-wrapper {
     display: inline-block;
-    float: right;
-    margin-right: 30px;
+    float: left;
+    margin-left: 30px;
   }
 </style>
