@@ -1,26 +1,32 @@
 <template>
   <div id="app">
     <Main />
-    <Viewer 
-      v-bind:source="videoLink"
-      v-on:videoEnded="updWebmUrl"
-    />
-    <VideoNavigationBar 
-      v-on:onclickRandom="updWebmUrl"
-      v-on:onclickPlayPause="playPauseVid"
-      v-on:onclickMoveBack="rewindVid(-10)"
-      v-on:onclickMoveFrw="rewindVid(10)"
-      v-on:onclickFS="vidFullscreen"
-    />
-    <SongDataViewer 
-      v-bind:data="videoData"
-    />
-    <p>
-      History
-    </p>
-    <History 
-      v-bind:vData="history"
-    />
+    <div class="song-data-wrapper">
+      <div class="player-wrapper">
+        <Viewer 
+          v-bind:source="videoLink"
+          v-on:videoEnded="updWebmUrl"
+        />
+        <VideoNavigationBar 
+          v-on:onclickRandom="updWebmUrl"
+          v-on:onclickPlayPause="playPauseVid"
+          v-on:onclickMoveBack="rewindVid(-10)"
+          v-on:onclickMoveFrw="rewindVid(10)"
+          v-on:onclickFS="vidFullscreen"
+        />
+        <SongDataViewer 
+          v-bind:data="videoData"
+        />
+      </div>
+      <div class="history-wrapper">
+        <p>
+          <b>History</b>
+        </p>
+        <History 
+          v-bind:vData="history"
+        />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -119,6 +125,7 @@ export default {
 <style>
   body {
     margin: 0;
+    background-color: #E8E9F3
   }
   #app {
     font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -131,5 +138,10 @@ export default {
   #app > div:nth-child(1) > h1 {
     margin: 0;
     padding: 20px;
+  }
+  .player-wrapper {
+    display: inline-block;
+    float: right;
+    margin-right: 30px;
   }
 </style>
