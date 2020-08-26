@@ -10,7 +10,7 @@ export default {
     methods: {
         videoUpdate() 
         {
-            fetch('http://91.203.192.143:5000/api/songs?random=true&count=1')
+            fetch('http://95.216.185.25:5000/api/songs?random=true&count=1')
                     .then(response => response.json())
                     .then(json => { 
                     this.videoInfo.videoData = json['items'][0];

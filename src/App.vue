@@ -61,7 +61,7 @@ export default {
   },
   methods: {
     updWebmUrl() {
-      fetch('http://91.203.192.143:5000/api/songs?random=true&count=1')
+      fetch('http://95.216.185.25:5000/api/songs?random=true&count=1')
         .then(response => response.json())
         .then(json => {
           this.history.unshift(this.videoData);
